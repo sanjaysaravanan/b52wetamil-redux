@@ -11,14 +11,57 @@ const SampleApp = () => {
   );
 };
 
+const MovementApp = () => {
+  const dispatch = useDispatch();
+  const { top, left } = useSelector((state) => state.movementsReducer);
+
+  return (
+    <div style={{ textAlign: "center" }}>
+      {console.log("Rendering Movements App")}
+      <div className="game-container">
+        <div
+          className="box"
+          style={{ top: `${top}px`, left: `${left}px` }}
+        ></div>
+      </div>
+      <div className="arrows">
+        <button
+          className="arrow arrow-left"
+          onClick={() => dispatch({ type: "left" })}
+        >
+          Left
+        </button>
+        <button
+          className="arrow arrow-top"
+          onClick={() => dispatch({ type: "top" })}
+        >
+          Top
+        </button>
+        <button
+          className="arrow arrow-right"
+          onClick={() => dispatch({ type: "right" })}
+        >
+          Right
+        </button>
+        <button
+          className="arrow arrow-bottom"
+          onClick={() => dispatch({ type: "bottom" })}
+        >
+          Bottom
+        </button>
+      </div>
+    </div>
+  );
+};
+
 const CountApp = () => {
-  // Consuming the state of the store provided
   // const {
   //   countReducer: { count },
   // } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
+  // Consuming the state of the store provided
   const { count } = useSelector((state) => state.countReducer);
 
   return (
@@ -37,6 +80,7 @@ function App() {
     <Provider store={store}>
       <CountApp />
       <SampleApp />
+      <MovementApp />
     </Provider>
   );
 }

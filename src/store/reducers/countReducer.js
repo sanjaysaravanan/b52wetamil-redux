@@ -1,6 +1,6 @@
 // Reducer function for the counter functionality
 const initialState = {
-  count: 100,
+  count: 999,
 };
 
 function countReducer(state = initialState, action) {
